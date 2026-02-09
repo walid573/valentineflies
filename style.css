@@ -1,0 +1,234 @@
+:root {
+            --primary: #ff4d6d;
+            --secondary: #ffb3c1;
+            --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+            --glass: rgba(255, 255, 255, 0.85);
+            --shadow: 0 8px 32px 0 rgba(255, 77, 109, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            background: var(--bg-gradient);
+            font-family: 'Nunito', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #590d22;
+        }
+
+        /* The Main Card Container */
+        .app-container {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 430px; /* iPhone Pro Max width optimization */
+            height: auto;
+            min-height: 60%;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 15px 0;
+            line-height: 1.3;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #800f2f;
+            margin-bottom: 25px;
+        }
+
+        /* Images */
+        .hero-img {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Romantic Image Specific Style */
+        .romantic-img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            margin-bottom: 20px;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.1s;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        /* Screens logic */
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Gift Styles --- */
+        
+        /* Gift 1: Bouquet */
+        .bouquet-wrapper {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .bouquet-img {
+            width: 250px; 
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+            margin: 10px 0;
+        }
+
+        .msg-bubble {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 5px 0;
+            font-weight: 600;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            max-width: 80%;
+        }
+        .msg-bubble:nth-child(1) { animation-delay: 0.2s; }
+        .msg-bubble:nth-child(3) { animation-delay: 0.6s; }
+        .msg-bubble:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Gift 2: Letter */
+        .letter-scroll {
+            background: #fff;
+            width: 100%;
+            max-height: 250px;
+            overflow-y: scroll;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px dashed var(--secondary);
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Gift 3: QR & Song */
+        .qr-box {
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            margin-bottom: 15px;
+            width: 160px;
+            margin: 0 auto 15px auto;
+        }
+
+        iframe {
+            border-radius: 12px; 
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .back-btn {
+            margin-top: auto;
+            background: transparent;
+            color: #800f2f;
+            box-shadow: none;
+            border: none;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            padding: 10px;
+        }

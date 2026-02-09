@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Be My Valentine?</title>
+    <!-- Cute Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- 1. INTRO SCREEN -->
+        <div id="screen-start" class="screen active">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2QyZzZ5aW12ZnBibG15cDM4eW15dmw1eW15dmw1eW15dmw1eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" class="hero-img" alt="Cute Bear">
+            <h1>Hey there, <br>Will you be my Valentine?</h1>
+            <div class="btn-group">
+                <button class="btn" onclick="handleYes()">YES</button>
+                <button class="btn btn-secondary" onclick="showScreen('screen-sad')">NO</button>
+            </div>
+        </div>
+
+        <!-- 2. SAD SCREEN -->
+        <div id="screen-sad" class="screen">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmM2c3E5eHcxYnhzanh5eW15dmw1eW15dmw1eW15dmw1eW15dmw1eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/7SF5scGB2AFrgsXP63/giphy.gif" class="hero-img" alt="Sad Bear">
+            <h1>Try again please...</h1>
+            <p>Don't break my heart 💔</p>
+            <button class="btn" onclick="showScreen('screen-start')">Okay, let me try again</button>
+        </div>
+
+        <!-- 3. MENU SCREEN (UPDATED WITH ROMANTIC PIC) -->
+        <div id="screen-menu" class="screen">
+            <!-- NEW ROMANTIC IMAGE HERE -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW15eW15dmw1eW15dmw1eW15dmw1eW15dmw1eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l4pTfx2qLSznacUAo/giphy.gif" class="romantic-img" alt="Romantic Hug">
+            
+            <h1>Yay! You said Yes!</h1>
+            <p>I love you so much ❤️<br>I prepared some surprises:</p>
+            
+            <div class="menu-grid">
+                <button class="btn" onclick="showScreen('screen-gift1')">🌹 The Flowers</button>
+                <button class="btn" onclick="showScreen('screen-gift2')">💌 The Letter</button>
+                <button class="btn" onclick="showScreen('screen-gift3')">🎵 The Song</button>
+            </div>
+        </div>
+
+        <!-- GIFT 1: FLOWERS -->
+        <div id="screen-gift1" class="screen">
+            <h1>For You</h1>
+            <div class="bouquet-wrapper">
+                <div class="msg-bubble">I will love you forever ❤️</div>
+                <img src="https://pngimg.com/d/bouquet_PNG30.png" class="bouquet-img" alt="Bouquet">
+                <div class="msg-bubble">You are my favorite person</div>
+                <div class="msg-bubble">My only Valentine</div>
+            </div>
+            <button class="btn back-btn" onclick="showScreen('screen-menu')">Go Back</button>
+        </div>
+
+        <!-- GIFT 2: LETTER -->
+        <div id="screen-gift2" class="screen">
+            <h1>My Heart</h1>
+            <div class="letter-scroll">
+                <p><strong>To My Love,</strong></p>
+                <p>I am so incredibly lucky to have you in my life. Every day with you feels like a dream I never want to wake up from.</p>
+                <p>Thank you for being my Valentine, my partner, and my best friend.</p>
+                <p>I promise to buy you flowers, make you laugh, and love you more every single day.</p>
+                <p>You are beautiful, inside and out.</p>
+                <p><strong>Forever yours,</strong><br>Me xoxo</p>
+            </div>
+            <button class="btn back-btn" onclick="showScreen('screen-menu')">Go Back</button>
+        </div>
+
+        <!-- GIFT 3: MUSIC -->
+        <div id="screen-gift3" class="screen">
+            <h1>Our Song</h1>
+            
+            <!-- SPOTIFY PLAYER EMBED -->
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/59qNfZ80CLERS1InhnasGU?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <p style="font-size:0.9rem; margin-bottom:5px;">Scan this to open in Spotify:</p>
+            <div class="qr-box">
+                <!-- QR CODE GENERATED FOR THE SONG -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://open.spotify.com/track/59qNfZ80CLERS1InhnasGU?si=655a738dc55145dc" style="width:100%; border-radius:10px;">
+            </div>
+            
+            <button class="btn back-btn" onclick="showScreen('screen-menu')">Go Back</button>
+        </div>
+
+    </div>
+
+    <script>
+        function showScreen(id) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function handleYes() {
+            showScreen('screen-menu');
+            
+            // Trigger Confetti
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff4d6d', '#ffb3c1', '#ffffff']
+            });
+        }
+    </script>
+</body>
+</html>
